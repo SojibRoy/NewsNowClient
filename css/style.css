@@ -36,3 +36,11 @@ body{
     color: #7579E7;
     border-radius: 10px;
 }
+
+.cata-title{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 25px;
+}
