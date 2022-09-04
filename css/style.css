@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #fafafa;
+}
+
+.logo{
+    background-color: #7579E7;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.logo2{
+    padding: 5px;
+    padding-left: 0px;
+    color: #7579E7;
+}
+
+.hstate{
+    margin-left: 20px;
+
+}
+
+.hstate:hover{
+    border-bottom: 3px solid #7579E7;
+    margin-bottom: -5px;
+}
+
+
+.hover2:hover{
+    background-color: #eaebfb;
+    color: #7579E7;
+    border-radius: 10px;
+}
