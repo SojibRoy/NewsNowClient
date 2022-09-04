@@ -40,7 +40,7 @@ const displayCategoryDetails = ditails => {
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a class="cata-title" onclick="loadDetails()" class="card-title">${detail.title}</a>
+                        <a class="cata-title card-title" data-bs-toggle="modal" data-bs-target="#news-detail-modal">${detail.title}</a>
                         <p class="card-text text-truncate ">${detail.details}</p>
                         <div class="row mt-5">
                         <P class="col-6"> <i class="fa-solid fa-user"></i><span class="ms-2">${detail.author.name}</span> </P>
