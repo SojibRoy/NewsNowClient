@@ -38,6 +38,16 @@ const displayCategoryDetails = ditails => {
     const detailContainer = document.getElementById('card-container');
     detailContainer.innerHTML='';
 
+    const displayItems = document.getElementById('item-no')
+    displayItems.innerText= ditails.length;
+    if(ditails.length === 0){
+     displayItems.classList.add('d-none')
+    }else{
+        displayItems.classList.remove('d-none')
+    }
+
+
+
 
     // Display No News Start
     const noNews = document.getElementById('no-news')
@@ -106,5 +116,7 @@ const toggler = isLoading =>{
         loadSpin.classList.add('d-none')
     }
 }
+
+
 
 loadData();
