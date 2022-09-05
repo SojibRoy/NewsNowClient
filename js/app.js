@@ -1,3 +1,5 @@
+// News category
+
 const loadData =() =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`
     fetch(url)
@@ -20,6 +22,10 @@ const displayCatagory = catagories => {
     })
 }
 
+
+
+
+// News
 const loadCategoryDetails= id => {
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
     fetch(url)
@@ -34,13 +40,13 @@ const displayCategoryDetails = ditails => {
         const detailDiv = document.createElement('div');
         detailDiv.classList.add('card','mb-3')
         detailDiv.innerHTML=`
-        <div class="row">
+        <div class="row" >
                  <div class="col-md-4 ">
                     <img src="${detail.image_url}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a class="cata-title card-title" data-bs-toggle="modal" data-bs-target="#news-detail-modal">${detail.title}</a>
+                        <a onclick="loadNewsDetails('${detail._id}')" class="cata-title card-title" data-bs-toggle="modal" data-bs-target="#news-detail-modal">${detail.title}</a>
                         <p class="card-text text-truncate ">${detail.details}</p>
                         <div class="row mt-5">
                         <P class="col-6"> <i class="fa-solid fa-user"></i><span class="ms-2">${detail.author.name}</span> </P>
@@ -55,4 +61,27 @@ const displayCategoryDetails = ditails => {
     })
 
 }
+
+const loadNewsDetails= (_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/${_id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayNewsDetails(data.data[0]))
+}
+
+const displayNewsDetails = news => {
+          const modalLable = document.getElementById('news-detail-modalLabel')
+          modalLable.innerText=`${news.title}`
+    const modalContainer = document.getElementById('modal-container')
+    modalContainer.innerHTML=`
+    <img src="${news.image_url}" class="img-fluid rounded-start" alt="...">
+                        <p>${news.details}</p>
+                        <div class="row mt-5">
+                        <P class="col-6"> <i class="fa-solid fa-user"></i><span class="ms-2">${news.author.name}</span> </P>
+                        <p class="card-text col-6"><small class="text-muted"><i class="fa-solid fa-eye"></i> ${news.total_view}</small></p>
+                        </div>
+    `
+    
+}
+
 loadData();
