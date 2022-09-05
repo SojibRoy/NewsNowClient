@@ -9,7 +9,6 @@ const loadData =() =>{
 
 const displayCatagory = catagories => {
     const cataContainer= document.getElementById('navbarNav');
-    
     catagories.forEach(category => {
         const cataUl = document.createElement('ul');
         cataUl.classList.add('navbar-nav','mx-auto')
@@ -20,6 +19,7 @@ const displayCatagory = catagories => {
         `
         cataContainer.appendChild(cataUl);
     })
+    
 }
 
 
@@ -27,6 +27,7 @@ const displayCatagory = catagories => {
 
 // News
 const loadCategoryDetails= id => {
+    toggler(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
     fetch(url)
     .then(res => res.json())
@@ -37,9 +38,6 @@ const displayCategoryDetails = ditails => {
     const detailContainer = document.getElementById('card-container');
     detailContainer.innerHTML='';
 
-    // Spinner start
-    const loadSpin = document.getElementById('spinner')
-    
 
     // Display No News Start
     const noNews = document.getElementById('no-news')
@@ -63,8 +61,8 @@ const displayCategoryDetails = ditails => {
                         <a onclick="loadNewsDetails('${detail._id}')" class="cata-title card-title" data-bs-toggle="modal" data-bs-target="#news-detail-modal">${detail.title}</a>
                         <p class="card-text text-truncate ">${detail.details}</p>
                         <div class="row mt-5">
-                        <P class="col-6"> <i class="fa-solid fa-user"></i><span class="ms-2">${detail.author.name}</span><span id="no-data" class="d-none text-danger">No Data Found</span> </P>
-                        <p class="card-text col-6"><small class="text-muted"><i class="fa-solid fa-eye"></i> ${detail.total_view}</small></p>
+                        <P id="no-details" class="col-6"> <small class="text-muted "><i class="fa-solid fa-user"></i> ${detail.author.name ? detail.author.name :'No Data Found'}</small></P>
+                        <p class="card-text col-6"><small class="text-muted"><i class="fa-solid fa-eye"></i> ${detail.total_view ? detail.total_view :'No Data Found'}</small></p>
                         </div>
                         
                     </div>
@@ -72,7 +70,9 @@ const displayCategoryDetails = ditails => {
 </div>
         `
         detailContainer.appendChild(detailDiv);
+
     })
+    toggler(false)
 
 }
 
@@ -96,6 +96,15 @@ const displayNewsDetails = news => {
                         </div>
     `
     
+}
+
+const toggler = isLoading =>{
+    const loadSpin = document.getElementById('spinner')
+    if(isLoading){
+        loadSpin.classList.remove('d-none')
+    }else{
+        loadSpin.classList.add('d-none')
+    }
 }
 
 loadData();
